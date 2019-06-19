@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guess Game</title>
+</head>
+<body>
+
+    <script>
+        var name = prompt('Enter your name');
+        console.log('Welcome to guess game '+name);
+        var targetNumber = Math.ceil(Math.random() * 100);
+        // targetNumber - Camel Case
+        // target_number - Snake Case
+        // TargetNumber - Pascal Case 
+        console.log(targetNumber);
+        var maxGuess = 10;
+        var playerGuess = 0;
+        var minNumber = 0;
+        var maxNumber = 100;
+
+        for(var i = 0; i <= maxGuess; i++) {
+            playerGuess++;
+            var guess = prompt("Guess my number between " +minNumber+ " and " +maxNumber);
+            if(Number(guess) < targetNumber) {
+                minNumber = guess;
+                console.log('OOPS!! your guess was low!');
+            } 
+            else if(Number(guess) > targetNumber) {
+                maxNumber = guess;
+                console.log('OOPS!!! your guess was high');
+            }
+            else if(Number(guess) == targetNumber) {
+                console.log('Good Job '+name+ ' you guessed my number in '+playerGuess+' guesses!');
+                break;
+            }
+            
+            if(playerGuess == 10) {
+                console.log('Sorry. You didnt get my number. My number was ' +targetNumber);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
