@@ -8,3 +8,6 @@ function Person(fName, lName) {
 
 var person1 = new Person('Bob', 'Smith');
 console.log(person1.greet());
+var person2 = new Person('Steve', 'Smith');
+person2.age = 12;
+console.log(person2)
