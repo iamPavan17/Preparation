@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hash Tag</title>
+</head>
+<body>
+    <h2 id="text">make in india</h2>
+    <button id="button">Generate hash Tag</button>
+    <div id="result"></div>
+    <script>
+        var textHandler = document.getElementById('text');
+        var buttonHandler = document.getElementById('button');
+        var resultHandler = document.getElementById('result');
+        var sd = document.getElementById('asd');
+
+        buttonHandler.addEventListener('click', function() {
+            var hash = '#';
+            var textArr = textHandler.innerHTML.split(' ');
+            textArr.forEach(function(text) {
+                hash += text.charAt(0).toUpperCase() + text.slice(1);
+            });
+            resultHandler.innerHTML = hash;
+        });
+    </script>
+</body>
+</html>
