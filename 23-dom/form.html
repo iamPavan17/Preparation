@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FORM</title>
+</head>
+<body>
+    <h1>Form handling</h1>
+
+    <form onsubmit="event.preventDefault();">
+        Name: <input type="text" name="" id="name"><br>
+        Age: <input type="text" name="" id="age"><br>
+        <button id="button1">Click</button>
+    </form>
+
+    <div id="content"></div>
+
+    <script>
+        var nameHanlder = document.getElementById('name');
+        var ageHandler = document.getElementById('age');
+        var buttonHanlder = document.getElementById('button1');
+        var divHandler = document.getElementById('content');
+
+        buttonHanlder.addEventListener('click', function() {
+            console.log(nameHanlder.value);
+            console.log(ageHandler.value);
+
+            divHandler.innerHTML = `
+                <h2>Form Content</h2>
+                <ul>
+                    <li>Name - ${nameHanlder.value}</li>
+                    <li>Age - ${ageHandler.value}</li>
+                </ul>`
+        })
+
+    </script>
+</body>
+</html>

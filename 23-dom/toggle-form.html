@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToggleForm</title>
+</head>
+<body>
+    <h1>Toggle Form</h1>
+    <form onsubmit="event.preventDefault()">
+        Text: <input type="text" name="" id="text">
+        <button id="button">Click to Toogle the Case</button>
+    </form>
+
+    <div id="div"></div>
+
+    <script>
+        var textHanlder = document.getElementById('text');
+        var buttonHanlder = document.getElementById('button');
+        var divHandler = document.getElementById('div');
+
+        var flag = 1;
+        buttonHanlder.addEventListener('click', function() {
+            if(flag) {
+                divHandler.innerHTML = textHanlder.value.toUpperCase();
+                flag = 0;
+            } else {
+                divHandler.innerHTML = textHanlder.value.toLowerCase();
+                flag = 1;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Split</title>
+</head>
+<body>
+    <h2 id="text">js, rb, node, py, php</h2>
+    <button id="button">Click to split</button>
+    <div id="result"></div>
+
+    <script>
+        var textHandler = document.getElementById('text');
+        var buttonHandler = document.getElementById('button');
+        buttonHandler.addEventListener('click', function() {
+            document.getElementById('result').innerHTML = text.innerHTML.split(',');
+        });
+    </script>
+</body>
+</html>
