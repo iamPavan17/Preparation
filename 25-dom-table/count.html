@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COUNT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <button id="button1" class="btn btn-outline-primary">+</button>
+    <span id="number">0</span>
+    <button id="button2" class="btn btn-outline-danger">-</button>
+
+    <script>
+        var buttonHandler1 = document.getElementById('button1');
+        var buttonHandler2 = document.getElementById('button2');
+        var numberHandler = document.getElementById('number');
+
+        var count = 0;
+        buttonHandler1.addEventListener('click', function() {
+            count++;
+            numberHandler.innerHTML = count;
+        });
+
+        buttonHandler2.addEventListener('click', function() {
+            count--;
+            if(count < 0) {
+                count++;
+                alert('Count can\'t be negative!!!');
+            }
+            numberHandler.innerHTML = count;
+        });
+        
+    </script>
+</body>
+</html>
