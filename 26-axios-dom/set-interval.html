@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Set Interval</title>
+</head>
+<body>
+    <button id="btn">Clear</button>
+
+    <script>
+        var btnHandler = document.getElementById('btn');
+        btnHandler.addEventListener('click', function() {
+            clearInterval(interval);
+            console.log('Interval is stopped!!');
+        });
+
+        var interval = setInterval(() => {
+            console.log('Hello')
+        }, 1000);
+    </script>
+</body>
+</html>
