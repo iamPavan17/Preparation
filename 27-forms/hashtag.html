@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Hash Tag</title>
+    <style>
+        .textColor {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>HashTag Generator</h2><br>
+        <form action="">
+            <label for="text">Enter a sentence</label> 
+            <input type="text" name="" id="text">
+            <div align="center">
+                <button class="btn-large" id="btn">Click here to create Hash Tag</button>
+            </div>
+        </form><br>
+        <h3 id="hash"></h3>
+    </div>
+
+    <script>
+        var hashHandler = document.getElementById('hash');
+        var textHandler = document.getElementById('text');
+        var btnHandler = document.getElementById('btn');
+
+        btnHandler.addEventListener('click', function(e) {
+            e.preventDefault();
+            if(textHandler.value == "") {
+                hashHandler.innerHTML = 'Cannot be blank!!!';
+                hashHandler.setAttribute('class', 'textColor');
+            } else {
+                hashHandler.setAttribute('class', '');
+                var hash = '#';
+                textHandler.value.split(' ').forEach(text => {
+                    hash += text[0].toUpperCase() + text.slice(1);
+                });
+                hashHandler.innerHTML = hash;
+                
+            }
+        });
+    </script>
+</body>
+</html>
