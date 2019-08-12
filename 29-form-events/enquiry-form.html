@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <title>Enquiry Form</title>
+</head>
+<body>
+    <div class="container p-5">
+        <h2 class="heading" align='center'>Enquiry Form</h2>
+        <div class="row">
+                <form class="col s12" action="./index.html" id="myForm">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input id="name" type="text" class="" name="name">
+                      <label for="name">Name</label>
+                      <span class="helper-text" id="nameError"></span>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="mobile" type="text" class="" name="mobile">
+                      <label for="mobile">Mobile</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input id="email" type="email" class="validate">
+                      <label for="email">Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <span style="font-size: 17px;">Gender</span>
+                        <span style="margin-left: 5%">
+                            <label>
+                              <input name="gender" type="radio" value="Male" id="male"/>
+                              <span>Male</span>
+                            </label>
+                        </span>
+                        <span>
+                            <label>
+                              <input name="gender" type="radio" value="Female" id="female"/>
+                              <span>Female</span>
+                            </label>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s6">
+                        <select name="languages" id="lang">
+                            <option value="" disabled selected>Choose the language</option>
+                            <option value="js">JavaScript</option>
+                            <option value="rb">Ruby</option>
+                            <option value="py">Python</option>
+                        </select>
+                        <label>Languages</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select name="courses" id="crs" class="browser-default">
+                        </select>
+                        <!-- <label>Courses</label> -->
+                    </div>
+                  </div>
+                <div class="row"> 
+                    <div class="input-field col s6">
+                        <input id="exp" type="number" class="" name="exp" min='0'>
+                        <label for="exp">Experience</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <span style="font-size: 17px;">Preferences</span>
+                        <span style="margin-left: 5%">
+                            <label>
+                              <input name="group1" type="radio" value="weekday" checked />
+                              <span>Weekday</span>
+                            </label>
+                        </span>
+                        <span>
+                            <label>
+                              <input name="group1" type="radio" value="weekend"/>
+                              <span>Weekend</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="about" class="materialize-textarea" name="about"></textarea>
+                        <label for="textarea1">Tell us about yourself</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light " type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                <button class="btn waves-effect waves-light " type="reset" name="action">Reset
+                    <i class="material-icons right">cached</i>
+                </button>
+                </form>
+        </div>
+    </div>   
+<script>
+      $(document).ready(function(){
+        $('select').formSelect();
+    });
+</script>
+
+<script>
+  var formHandler = document.getElementById('myForm');
+  var mobileHandler = document.getElementById('mobile');
+
+  var hasErrors = {
+    name: true,
+    mobile: true
+  }
+
+  function validate() {
+    if(document.getElementById('name').value == "") {
+        document.getElementById('nameError').innerHTML = 'Cannot be blank!!!';  
+        hasErrors.name = true;   
+    } else {
+      document.getElementById('nameError').innerHTML = '';     
+      hasErrors.name = false;
+    }
+  }
+
+  function validateMobile() {
+    if(mobileHandler.value.length === 10) {
+      hasErrors.mobile = false;
+    } else {
+      hasErrors.mobile = true;
+    }
+  }
+
+  myForm.name.addEventListener('blur', validate);
+  formHandler.addEventListener('submit', function(e) {
+    validate();
+    validateMobile();
+
+    if(Object.values(hasErrors).includes(true)) {
+      console.log(hasErrors)
+      e.preventDefault(); 
+    }
+
+  });
+</script>
+<!-- <script src="js/app.js"></script> -->
+</body>
+</html>
