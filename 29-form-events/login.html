@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container" >
+        <h2 align='center'>LOGIN</h2><br>
+        <div class="row">
+                <form class="col s12" id="myForm" action="./index.html">
+                  <div class="row">
+                    <div class="input-field col s5">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input id="username" type="text" class="validate">
+                      <label for="username">Username</label>   <span class="helper-text" id="userNameError"></span> 
+                    </div>
+                    <div class="input-field col s5">
+                      <i class="material-icons prefix">https</i>
+                      <input id="password" type="password" class="validate">
+                      <label for="password">Password</label>    <span class="helper-text" id="passwordError"></span>
+                    </div>
+                    <div class="input-field col s2">
+                        <a class="btn-floating waves-effect waves-light" id="show"><i class="material-icons">remove_red_eye</i></a>
+                    </div>
+                  </div>
+                  <div align='center'>
+                      <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Login
+                        <i class="material-icons right">send</i>
+                      </button>
+                      <button class="btn waves-effect waves-light btn-large" type="reset" name="action">Reset
+                        <i class="material-icons right">cached</i>
+                      </button>
+                  </div>
+                </form>
+        </div>
+    </div>
+
+    <script>
+        var myFormHandler = document.getElementById('myForm');
+        var nameHandler = document.getElementById('username');
+        var passwordHandler = document.getElementById('password');
+        var userNameErrorHandler = document.getElementById('userNameError');
+        var passwordErrorHandler = document.getElementById('passwordError');
+        var showHandler = document.getElementById('show');
+
+        var ErrorObj = {
+            username: true,
+            password: true
+        };
+
+        function validateUsername() {
+            if(nameHandler.value == "") {
+                userNameErrorHandler.innerText = 'Usenname cannot be empty!!!';
+                ErrorObj.username = true;
+            } else {
+              userNameErrorHandler.innerText = "";
+                ErrorObj.username = false;
+            }
+        } 
+
+        function validatePassword() {
+          if(passwordHandler.value == "") {
+            passwordErrorHandler.innerText = 'Password cannot be empty!!!';
+            ErrorObj.password = true;
+          } else {
+            passwordErrorHandler.innerText = "";
+            ErrorObj.password = false;
+          }
+
+          if(passwordHandler.value.length > 8 && passwordHandler.value.length < 128) {
+              ErrorObj.password = false;
+              passwordErrorHandler.innerText = "";
+          } else {
+              ErrorObj.password = true;
+              passwordErrorHandler.innerText = 'Password should be between 8 and 128.'
+          }
+        }
+
+        nameHandler.addEventListener('blur', validateUsername);
+        passwordHandler.addEventListener('blur', validatePassword);
+        myFormHandler.addEventListener('submit', function(e) {
+            validateUsername();
+            validatePassword();
+
+            if(Object.values(ErrorObj).includes(true)) {
+                e.preventDefault();
+            }
+        });
+
+        showHandler.addEventListener('mouseover', function() {
+            passwordHandler.setAttribute('type', 'text');
+        }); 
+        showHandler.addEventListener('mouseout', function() {
+            passwordHandler.setAttribute('type', 'password')
+        })
+
+
+
+    </script>
+</body>
+</html>
