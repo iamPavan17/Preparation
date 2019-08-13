@@ -5,6 +5,13 @@ var nameHandler = document.getElementById('name');
 var deptHandler = document.getElementById('dept');
 var priorityHandler = document.getElementsByName('priority');
 var messageHandler = document.getElementById('message');
+var allButtonHandler = document.getElementById('allButton');
+var highButtonHandler = document.getElementById('highButton');
+var mediumButtonHandler = document.getElementById('mediumButton');
+var lowButtonHandler = document.getElementById('lowButton');
+var tickets;
+var searchHandler = document.getElementById('search');
+
 var baseUrl = 'http://dct-api-data.herokuapp.com/tickets?api_key=befe313c9c822bc2'
 
 function buildRow(ticket) {
@@ -38,22 +45,24 @@ function buildRow(ticket) {
     tableBodyHandler.appendChild(tr);
 } 
 
-axios.get(baseUrl)
-.then(function(response) {
-    var tickets = response.data;
-    // console.log(tickets);
-    countHandler.innerText = tickets.length;
-    tickets.forEach(ticket => {
-        buildRow(ticket);
+function getTickets() {
+    tableBodyHandler.innerHTML = "";
+    axios.get(baseUrl)
+    .then(function(response) {
+        tickets = response.data;
+        // console.log(tickets);
+        countHandler.innerText = tickets.length;
+        tickets.forEach(ticket => {
+            buildRow(ticket);
+        });
+    })
+    .catch(function(err) {
+        console.log(err);
     });
-})
-.catch(function(err) {
-    console.log(err);
-});
+}
 
 formHandler.addEventListener('submit', function(e) {
     e.preventDefault();
-
     var priorityArray = Array.from(priorityHandler);
     // console.log(priorityArray)s
     var result = priorityArray.filter(priority => {
@@ -83,4 +92,52 @@ formHandler.addEventListener('submit', function(e) {
         console.log(err);
     })
     console.log(formData)
+});
+
+function filterTickets(priority) {
+    tableBodyHandler.innerHTML = "";
+    var count = 0;
+    tickets.forEach(ticket => {
+        if(ticket.priority == priority) {
+            buildRow(ticket);
+            count++;
+        }
+    });
+    countHandler.innerText = count;
+}
+
+allButtonHandler.addEventListener('click', function() {
+    getTickets();
+    // console.log('all')
+});
+
+highButtonHandler.addEventListener('click', function() {
+    filterTickets('High')
+});
+
+mediumButtonHandler.addEventListener('click', function() {
+    filterTickets('Medium')
+});
+
+lowButtonHandler.addEventListener('click', function() {
+    filterTickets('Low')
+    
+});
+
+window.addEventListener('load', function(e) {
+    getTickets();
+});
+
+searchHandler.addEventListener('input', function(e) {
+    // console.log(searchHandler.value )
+    tableBodyHandler.innerHTML = "";
+    var searchResult = tickets.filter(ticket => {
+        return (ticket.ticket_code.toLowerCase()).indexOf(searchHandler.value.toLowerCase()) >= 0 || (ticket.name.toLowerCase()).indexOf(searchHandler.value.toLowerCase()) >= 0;
+    });       
+    
+    searchResult.forEach(ticket => {
+        buildRow(ticket);
+    });
+
+    countHandler.innerText = searchResult.length;
 });
