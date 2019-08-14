@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Count Word</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Word Count</h2>
+        <div class="row">
+            <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                <textarea id="text" class="materialize-textarea"></textarea>
+                <label for="Enter the text">Enter the text</label>
+                </div>
+            </div>
+            </form>
+        </div>
+        <p id="count"></p>
+    </div>
+    <script>
+        textHandler = document.getElementById('text');
+        countHandler = document.getElementById('count');
+
+        textHandler.addEventListener('input', function() {
+            var count = 0;
+            textHandler.value.split(' ').forEach(t => {
+                count += t.length; 
+            });
+            countHandler.innerText = `You have entered ${count} words.`;
+        });
+    </script>
+</body>
+</html>
