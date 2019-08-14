@@ -36,11 +36,16 @@ function buildRow(ticket) {
     var td5Text = document.createTextNode(ticket.message);
     td5.appendChild(td5Text);
 
+    var td6 = document.createElement('td');
+    var td6Text = document.createTextNode(ticket.status);
+    td6.appendChild(td6Text);
+
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
     tr.appendChild(td5);
+    tr.appendChild(td6)
     
     tableBodyHandler.appendChild(tr);
 } 

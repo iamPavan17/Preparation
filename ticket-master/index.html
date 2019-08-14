@@ -12,62 +12,68 @@
     <title>Ticket Master</title>
 </head>
 <body>
-    <div class="container p-5">
+    <div class="container">
         <h1 align='center' class="pb-4">Ticket Master</h1>
+        <div class='row'>
+            <div class="col-8">
+                <h4>Listing Tickets - <span id="count">Fetching...</span></h4>
 
-        <h4>Listing Tickets - <span id="count">Fetching...</span></h4>
+                <input type="text" name="search" id="search" placeholder="search by code">
 
-        <input type="text" name="search" id="search" placeholder="search by code">
+                <button id="allButton">All</button>
+                <button id="highButton">High</button>
+                <button id="mediumButton">Medium</button>
+                <button id="lowButton">Low</button>
 
-        <button id="allButton">All</button>
-        <button id="highButton">High</button>
-        <button id="mediumButton">Medium</button>
-        <button id="lowButton">Low</button>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Priority</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
 
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Priority</th>
-                    <th>Message</th>
-
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-
-            </tbody>
-        </table>
-
+                    </tbody>
+                </table>
+            </div>
+        
         <br>
 
-        <fieldset>
-            <form action="" id="myForm">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name"><br>
+            <div class="col-4">
+                <fieldset>
+                    <legend>Add ticket</legend>
+                    <form action="" id="myForm">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name"><br>
 
-                <label for="dept">Department</label>
-                <select name="dept" id="dept">
-                    <option value="">Select</option>
-                    <option value="Technical">Technical</option>
-                    <option value="Sales">Sales</option>
-                    <option value="HR">HR</option>
-                </select><br>
+                        <label for="dept">Department</label>
+                        <select name="dept" id="dept">
+                            <option value="">Select</option>
+                            <option value="Technical">Technical</option>
+                            <option value="Sales">Sales</option>
+                            <option value="HR">HR</option>
+                        </select><br>
 
-                <label for="priority">Priority</label>  
-                <input type="radio" id="High" name="priority" value="High"> High
-                <input type="radio" name="priority" id="Medium" value="Medium">Medium
-                <input type="radio" name="priority" id="Low" value="Low">Low 
-                <br>
+                        <label for="priority">Priority</label>  
+                        <input type="radio" id="High" name="priority" value="High"> High
+                        <input type="radio" name="priority" id="Medium" value="Medium">Medium
+                        <input type="radio" name="priority" id="Low" value="Low">Low 
+                        <br>
 
-                <label for="message">Message</label>
-                <textarea name="message" id="message" cols="20" rows="5"></textarea><br>
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" cols="20" rows="5"></textarea><br>
 
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
-            </form>
-        </fieldset>
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset">
+                    </form>
+                </fieldset>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
